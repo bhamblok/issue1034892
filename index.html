@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>HOUDINI TEST</title>
+<script>
+  CSS.layoutWorklet.addModule('layout.js');
+/*
+  // This "imported" module includes the following code
+  registerLayout('child-layout', class {
+    async intrinsicSizes() {
+      console.log('when will "intrinsicSizes" be ready :-)?');
+    }
+
+    async layout(children) {
+      console.log('layout: "child-layout"');
+      return {
+        childFragments: await Promise.all(
+          children.map(child => child.layoutNextFragment()),
+        ),
+      };
+    }
+  });
+*/
+</script>
+<style>
+  .child {
+    display: layout(child-layout);
+  }
+  /* when you UNCOMMENT the next line, the "crashing browser(-frame)"-issue will be fixed */
+  /* .child:after { content: ''; } */
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="child">
+<!-- when you UNCOMMENT the next line, the "crashing browser(-frame)"-issue will be fixed -->
+<!-- <span>remove this line / put this line in comments</span> -->
+    child text content
+  </div>
+</div>
+</body>
+</html>
